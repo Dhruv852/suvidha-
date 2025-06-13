@@ -1,0 +1,21 @@
+# Node
+node_modules
+.next
+
+# Python
+.venv
+venv
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# PDFs generated in the data folder (if any)
+backend/data/*.pdf
+frontend/public/*.pdf
+
+# Cache and temporary files
+__pycache__/
+.DS_Store 
