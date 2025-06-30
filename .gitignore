@@ -13,8 +13,8 @@ venv
 *.log
 
 # PDFs generated in the data folder (if any)
-backend/data/*.pdf
-frontend/public/*.pdf
+# backend/data/*.pdf
+# frontend/public/*.pdf
 
 # Cache and temporary files
 __pycache__/
