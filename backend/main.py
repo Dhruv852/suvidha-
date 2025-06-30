@@ -8,6 +8,7 @@ import google.generativeai as genai
 from datetime import datetime
 from utils.knowledge_base import KnowledgeBase
 import logging
+from fastapi.staticfiles import StaticFiles
 
 # Load environment variables
 load_dotenv()
@@ -26,11 +27,17 @@ app = FastAPI(
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Frontend URL
+    allow_origins=[
+        "http://localhost:3000",
+        "https://suvidha-iota.vercel.app"  # Replace with your actual Vercel domain
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Add static file serving
+app.mount("/static", StaticFiles(directory="data"), name="static")
 
 # Initialize Gemini API with specific model and key
 GEMINI_API_KEY = "AIzaSyA7zvS_Z97Eeb1Ue5M0ZNn-H8UFIKBcY4M"

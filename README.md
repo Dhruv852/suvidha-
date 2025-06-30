@@ -111,3 +111,23 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - FastAPI for the robust backend framework
 - Next.js team for the excellent frontend framework
 - The open-source community for various tools and libraries 
+
+
+python scripts/process_documents.py
+
+## Deploying Backend on Render.com
+
+1. Ensure `backend/data/` contains `GFR2017.pdf` and `pm2025.pdf` and they are committed to your repository.
+2. In Render, set the root directory to `backend` if your repo has both frontend and backend.
+3. Set the build command to:
+   ```bash
+   pip install -r requirements.txt && python -m spacy download en_core_web_sm
+   ```
+4. Set the start command to:
+   ```bash
+   gunicorn -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:10000
+   ```
+5. Add your Vercel frontend domain to the CORS `allow_origins` list in `main.py`.
+6. The backend will serve PDFs from `/static/GFR2017.pdf` and `/static/pm2025.pdf`.
+7. Set the `GEMINI_API_KEY` environment variable in Render (if/when you want to secure the key).
+8. After deployment, update your frontend to use the Render backend URL for API calls.
